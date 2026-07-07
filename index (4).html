@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Own The Buyer — Marvin Samuel Ssemanda & Ronet Nabunnya</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  :root{
+    --ink:#101210;
+    --steel:#1B2733;
+    --steel-2:#233343;
+    --gold:#E8A93A;
+    --ember:#C9502A;
+    --bone:#F1ECE1;
+    --slate:#9BA6AF;
+    --teal:#3FA089;
+    --teal-2:#2C7A68;
+    --line: rgba(241,236,225,0.12);
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; -webkit-text-size-adjust:100%;}
+  html, body{ max-width:100%; overflow-x:hidden; }
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Source Sans 3', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; }
+  button{ font-family:inherit; }
+  h1,h2,h3,.display{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    margin:0;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:inherit; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  section{ padding:96px 0; border-bottom:1px solid var(--line); }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--gold); display:inline-block; }
+  .eyebrow.teal{ color:var(--teal); }
+  .eyebrow.teal::before{ background:var(--teal); }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(16,18,16,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; gap:16px; }
+  .brand{ font-family:'Oswald'; font-weight:700; font-size:18px; letter-spacing:0.06em; text-transform:uppercase; flex:none; }
+  .brand span{ color:var(--gold); }
+  .navlinks{ display:flex; gap:28px; font-size:13px; text-transform:uppercase; letter-spacing:0.08em; }
+  .navlinks a{ text-decoration:none; color:var(--slate); transition:color .2s; }
+  .navlinks a:hover{ color:var(--bone); }
+  .nav-ctas{ display:flex; align-items:center; gap:10px; }
+  .nav-cta{
+    background:var(--gold); color:var(--ink); padding:9px 18px; border-radius:var(--radius);
+    font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.06em; text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-cta.jobs{ background:transparent; color:var(--teal); border:1px solid var(--teal); }
+  .nav-desktop{ display:flex; align-items:center; gap:28px; flex:1; justify-content:flex-end; }
+
+  /* Hamburger — hidden on desktop, shown on mobile */
+  .nav-burger{
+    display:none; flex:none; width:40px; height:40px; border:1px solid var(--line); border-radius:var(--radius);
+    background:transparent; cursor:pointer; position:relative;
+  }
+  .nav-burger span, .nav-burger span::before, .nav-burger span::after{
+    content:''; position:absolute; left:9px; right:9px; height:2px; background:var(--bone); transition:transform .2s, opacity .2s;
+  }
+  .nav-burger span{ top:19px; }
+  .nav-burger span::before{ top:-7px; }
+  .nav-burger span::after{ top:7px; }
+  .nav-burger.open span{ background:transparent; }
+  .nav-burger.open span::before{ transform:translateY(7px) rotate(45deg); }
+  .nav-burger.open span::after{ transform:translateY(-7px) rotate(-45deg); }
+
+  .mobile-panel{
+    display:none;
+    flex-direction:column;
+    gap:4px;
+    padding:8px 24px 20px;
+    border-top:1px solid var(--line);
+    background:rgba(16,18,16,0.98);
+  }
+  .mobile-panel.open{ display:flex; }
+  .mobile-panel a{
+    padding:12px 4px; font-size:14px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--slate); text-decoration:none; border-bottom:1px solid var(--line);
+  }
+  .mobile-panel a:hover{ color:var(--bone); }
+  .mobile-panel .nav-cta{ text-align:center; margin-top:12px; }
+  .mobile-panel .nav-cta.jobs{ margin-top:8px; }
+
+  @media (max-width: 760px){
+    .nav-desktop{ display:none; }
+    .nav-burger{ display:block; }
+  }
+
+  /* HERO */
+  .hero{
+    padding:88px 0 60px;
+    background:
+      radial-gradient(ellipse 800px 500px at 85% -10%, rgba(232,169,58,0.14), transparent 60%),
+      radial-gradient(ellipse 600px 400px at 10% 110%, rgba(201,80,42,0.12), transparent 60%);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; }
+  .hero h1{ font-size:clamp(42px,6vw,68px); line-height:0.98; margin-bottom:22px; }
+  .hero h1 .accent{ color:var(--gold); }
+  .hero p.lede{ font-size:18px; color:var(--slate); max-width:46ch; margin-bottom:32px; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:15px 26px; border-radius:var(--radius);
+    font-family:'Oswald'; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; font-size:14px;
+    text-decoration:none; border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{ background:var(--gold); color:var(--ink); }
+  .btn-primary:hover{ background:#f2b752; }
+  .btn-ghost{ border-color:var(--line); color:var(--bone); background:transparent; }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
+  .btn-teal{ background:var(--teal); color:#08221c; }
+  .btn-teal:hover{ background:#4bb39a; }
+  .price-tag{ font-family:'JetBrains Mono'; font-size:14px; color:var(--slate); }
+  .price-tag b{ color:var(--bone); font-size:16px; }
+
+  /* BOOK COVER DISPLAY — signature hero visual */
+  .book-display{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    perspective:1600px;
+  }
+  .book-glow{
+    position:absolute;
+    inset:-15% -10%;
+    background:
+      radial-gradient(closest-side, rgba(232,169,58,0.30), transparent 70%);
+    filter:blur(28px);
+    z-index:0;
+    pointer-events:none;
+  }
+  .book-mockup{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:330px;
+    transform: rotateY(-14deg) rotateX(3deg) rotateZ(-1.2deg);
+    transform-style:preserve-3d;
+    transition: transform .5s cubic-bezier(.2,.7,.3,1);
+  }
+  .book-mockup:hover{ transform: rotateY(-6deg) rotateX(1deg) rotateZ(-0.4deg); }
+  .book-pages{
+    position:absolute;
+    top:5px; bottom:5px; right:-9px;
+    width:16px;
+    background:
+      repeating-linear-gradient(180deg,
+        #e9e2d0 0px, #e9e2d0 1.5px,
+        #cbc1a8 1.5px, #cbc1a8 3px);
+    border-radius:0 4px 4px 0;
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.55);
+    transform: translateZ(-6px);
+  }
+  .book-cover-img{
+    position:relative;
+    z-index:1;
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:2px;
+    box-shadow:
+      18px 26px 46px -14px rgba(0,0,0,0.75),
+      0 0 0 1px rgba(241,236,225,0.08);
+  }
+  .book-caption{
+    margin-top:26px;
+    text-align:center;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
+  .book-caption b{ color:var(--gold); }
+
+  /* INSIDE / CHAPTERS */
+  .chapters{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:44px; }
+  .chapter{ background:var(--ink); padding:28px 26px; display:flex; gap:18px; }
+  .chapter .num{ font-family:'JetBrains Mono'; color:var(--ember); font-weight:700; font-size:22px; min-width:34px; }
+  .chapter h3{ font-size:16px; margin-bottom:6px; letter-spacing:0.01em; }
+  .chapter p{ color:var(--slate); font-size:14px; margin:0; }
+
+  /* SCORECARD */
+  .scorecard{ margin-top:48px; border:1px solid var(--line); background:var(--steel); }
+  .scorecard-head{ padding:22px 28px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:baseline; }
+  .scorecard-head h3{ font-size:15px; color:var(--gold); }
+  .table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table{ width:100%; min-width:480px; border-collapse:collapse; font-size:14px; }
+  table th, table td{ text-align:left; padding:14px 28px; border-bottom:1px solid var(--line); }
+  table th{ font-family:'JetBrains Mono'; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--slate); font-weight:500; }
+  table td.pts{ font-family:'JetBrains Mono'; color:var(--gold); text-align:right; }
+  table tr:last-child td{ border-bottom:none; }
+
+  /* BUY */
+  .buy-section{ background:var(--steel); }
+  .buy-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+  .buy-card{
+    position:relative;
+    background:var(--ink); border:1px solid var(--line); padding:36px; border-radius:var(--radius);
+  }
+  .buy-card-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+  .buy-thumb{
+    flex:none;
+    width:76px;
+    border-radius:2px;
+    box-shadow: 8px 10px 22px -8px rgba(0,0,0,0.7), 0 0 0 1px rgba(241,236,225,0.08);
+    transform: rotate(3deg);
+  }
+  .buy-card .price{ font-family:'Oswald'; font-size:46px; color:var(--gold); margin:10px 0 4px; }
+  .buy-card .price sup{ font-size:18px; margin-right:4px; color:var(--slate); }
+  .buy-card ul{ list-style:none; padding:0; margin:24px 0 30px; }
+  .buy-card li{ padding:9px 0; border-bottom:1px dashed var(--line); font-size:14px; color:var(--slate); display:flex; gap:10px; }
+  .buy-card li::before{ content:'—'; color:var(--ember); }
+  .pay-methods{ display:flex; gap:12px; margin:18px 0 26px; }
+  .pay-pill{ flex:1; border:1px solid var(--line); padding:12px; text-align:center; border-radius:var(--radius); font-family:'JetBrains Mono'; font-size:12px; letter-spacing:0.05em; }
+  .pay-pill.mtn{ color:#ffd400; border-color:rgba(255,212,0,0.35); }
+  .pay-pill.airtel{ color:#ff2b2b; border-color:rgba(255,43,43,0.35); }
+  .full-btn{ width:100%; text-align:center; justify-content:center; }
+  .note{ font-size:12px; color:var(--slate); margin-top:14px; }
+
+  /* JOBS CTA — sits below the buy section */
+  .jobs-section{
+    background:
+      radial-gradient(ellipse 700px 400px at 15% 0%, rgba(63,160,137,0.14), transparent 60%);
+  }
+  .jobs-card{
+    border:1px solid rgba(63,160,137,0.35);
+    background: linear-gradient(180deg, rgba(63,160,137,0.08), rgba(63,160,137,0.02));
+    border-radius:var(--radius);
+    padding:44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .jobs-card h2{ font-size:28px; margin-bottom:10px; }
+  .jobs-card p{ color:var(--slate); font-size:15px; max-width:52ch; margin:0; }
+  .jobs-card .btn-teal{ flex:none; }
+
+  /* MODAL */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(6,7,6,0.82); display:none; align-items:center; justify-content:center; z-index:100; padding:20px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal{ background:var(--steel); border:1px solid var(--line); max-width:420px; width:100%; padding:32px; border-radius:var(--radius); position:relative; }
+  .modal h3{ font-size:20px; margin-bottom:6px; }
+  .modal p{ color:var(--slate); font-size:14px; }
+  .modal-close{ position:absolute; top:14px; right:18px; background:none; border:none; color:var(--slate); font-size:20px; cursor:pointer; }
+  .field{ margin:18px 0; }
+  .field label{ display:block; font-family:'JetBrains Mono'; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--slate); margin-bottom:8px; }
+  .field select, .field input{
+    width:100%; padding:12px 14px; background:var(--ink); border:1px solid var(--line); color:var(--bone);
+    border-radius:var(--radius); font-family:'Source Sans 3'; font-size:15px;
+  }
+  .field select:focus, .field input:focus{ outline:none; border-color:var(--gold); }
+  .status-box{ margin-top:18px; padding:14px 16px; border-radius:var(--radius); font-size:13px; display:none; }
+  .status-box.show{ display:block; }
+  .status-box.pending{ background:rgba(232,169,58,0.1); color:var(--gold); border:1px solid rgba(232,169,58,0.3); }
+  .status-box.success{ background:rgba(120,200,120,0.1); color:#8fdc8f; border:1px solid rgba(120,200,120,0.3); }
+  .spinner{ display:inline-block; width:12px; height:12px; border:2px solid rgba(232,169,58,0.3); border-top-color:var(--gold); border-radius:50%; animation:spin .8s linear infinite; margin-right:8px; vertical-align:middle; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  /* AUTHOR */
+  .authors{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:48px; }
+  .author-card{ border:1px solid var(--line); padding:32px; }
+  .avatar{
+    width:160px; height:200px; border-radius:50%; background:var(--steel-2); border:2px solid rgba(232,169,58,0.35);
+    display:flex; align-items:center; justify-content:center; font-family:'Oswald'; font-size:28px; color:var(--gold);
+    margin-bottom:22px; overflow:hidden; box-shadow: 0 8px 24px -8px rgba(0,0,0,0.6);
+  }
+  .avatar img{ width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+  .author-card h3{ font-size:19px; margin-bottom:4px; }
+  .author-role{ font-family:'JetBrains Mono'; font-size:11px; color:var(--ember); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px; display:block; }
+  .author-card p{ color:var(--slate); font-size:14px; }
+  .author-contact{ margin-top:14px; font-family:'JetBrains Mono'; font-size:13px; color:var(--gold); }
+
+  /* COMING SOON */
+  .soon-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:44px; }
+  .soon-card{ border:1px dashed var(--line); padding:24px; position:relative; display:flex; flex-direction:column; }
+  .soon-tag{ align-self:flex-start; font-family:'JetBrains Mono'; font-size:10px; background:var(--ember); color:var(--bone); padding:4px 9px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px; }
+  .soon-cover{ position:relative; width:100%; aspect-ratio:3/4; border:1px solid var(--line); border-radius:2px; overflow:hidden; background:linear-gradient(160deg, var(--steel-2), var(--ink)); margin-bottom:20px; }
+  .soon-cover-fallback{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:16px; }
+  .soon-cover-fallback span{ font-family:'JetBrains Mono'; font-size:11px; letter-spacing:0.12em; color:var(--gold); text-transform:uppercase; line-height:1.6; opacity:0.85; }
+  .soon-cover img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .soon-card h3{ font-size:17px; margin-bottom:8px; }
+  .soon-card p{ color:var(--slate); font-size:13px; margin:0; }
+
+  footer{ padding:48px 0; }
+  .footer-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:13px; color:var(--slate); }
+  .footer-grid b{ color:var(--bone); }
+
+  @media (max-width: 860px){
+    .hero-grid, .buy-grid, .authors{ grid-template-columns:1fr; }
+    .chapters, .soon-grid{ grid-template-columns:1fr; }
+    section{ padding:64px 0; }
+    .book-mockup{ max-width:260px; transform:none; }
+    .book-mockup:hover{ transform:none; }
+    .jobs-card{ flex-direction:column; align-items:flex-start; }
+    .jobs-card .btn-teal{ width:100%; justify-content:center; }
+  }
+
+  @media (max-width: 600px){
+    .wrap{ padding:0 18px; }
+    section{ padding:52px 0; }
+    .hero{ padding:32px 0 44px; }
+    .hero p.lede{ font-size:16px; }
+    .hero-actions .btn{ width:100%; justify-content:center; }
+    .hero-actions{ flex-direction:column; align-items:stretch; }
+    .buy-card{ padding:24px; }
+    .buy-card .price{ font-size:38px; }
+    .pay-methods{ flex-direction:column; }
+    .jobs-card{ padding:28px 24px; }
+    .jobs-card h2{ font-size:22px; }
+    .avatar{ width:120px; height:120px; }
+    .author-card{ padding:24px; }
+    .chapter{ padding:22px 20px; }
+    nav .wrap{ padding:14px 18px; }
+    .mobile-panel{ padding:8px 18px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">OWN <span>THE</span> BUYER</div>
+    <div class="nav-desktop">
+      <div class="navlinks" id="navlinks">
+        <a href="#inside">Inside the Book</a>
+        <a href="#authors">Authors</a>
+        <a href="#jobs">Find Work</a>
+        <a href="#soon">Coming Soon</a>
+      </div>
+      <div class="nav-ctas">
+        <a class="nav-cta jobs" href="https://jobslinkuganda.online" target="_blank" rel="noopener">Find Job or Worker</a>
+        <a class="nav-cta" href="#buy">Get the Book — 20,000 UGX</a>
+      </div>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span></button>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#inside" onclick="closeMobileNav()">Inside the Book</a>
+    <a href="#authors" onclick="closeMobileNav()">Authors</a>
+    <a href="#jobs" onclick="closeMobileNav()">Find Work</a>
+    <a href="#soon" onclick="closeMobileNav()">Coming Soon</a>
+    <a class="nav-cta jobs" href="https://jobslinkuganda.online" target="_blank" rel="noopener">Find Job or Worker</a>
+    <a class="nav-cta" href="#buy" onclick="closeMobileNav()">Get the Book — 20,000 UGX</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">A sales survival manual, built in Uganda</div>
+      <h1>Most people<br>own the product.<br><span class="accent">Own the buyer.</span></h1>
+      <p class="lede">Own The Buyer is the field manual for anyone who has to move a person from "maybe" to "yes" — leads, prospects, brokers, closes, and the 4am discipline behind all of it. Written by Marvin Samuel Ssemanda &amp; Ronet Francis Nabunnya.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="goToPesapal()">Buy &amp; Download — UGX 20,000</button>
+        <a class="btn btn-ghost" href="#inside">See what's inside</a>
+      </div>
+    </div>
+    <div class="book-display">
+      <div class="book-glow"></div>
+      <div class="book-mockup">
+        <div class="book-pages"></div>
+        <img class="book-cover-img" src="own-the-buyer-cover (1).jpg" alt="Own The Buyer book cover — Marvin Samuel Ssemanda and Ronet Francis Nabunnya">
+      </div>
+      <div class="book-caption">From Rejection To Results · <b>8 Chapters</b> · Instant PDF</div>
+    </div>
+  </div>
+</header>
+
+<section id="inside">
+  <div class="wrap">
+    <div class="eyebrow">Chapter by chapter</div>
+    <h2 style="font-size:36px;">What's inside the book</h2>
+    <div class="chapters">
+      <div class="chapter"><span class="num">01</span><div><h3>Own The Buyer</h3><p>Why the person who controls demand — not the best producer — controls the income.</p></div></div>
+      <div class="chapter"><span class="num">02</span><div><h3>Own The Game</h3><p>The language of control: leads, prospects, qualification, offer, close.</p></div></div>
+      <div class="chapter"><span class="num">03</span><div><h3>Turning Conversations Into Opportunities</h3><p>Cold calling without the cringe, and building a referral engine that pays itself.</p></div></div>
+      <div class="chapter"><span class="num">04</span><div><h3>Hunters</h3><p>No desk, no excuses, just results — the daily activity standard of a closer.</p></div></div>
+      <div class="chapter"><span class="num">05</span><div><h3>Close Or Watch It Slip Away</h3><p>The exact script and language that moves a deal from warm to signed.</p></div></div>
+      <div class="chapter"><span class="num">06</span><div><h3>Negotiate Or Waste Everything</h3><p>Protecting your price, paying your brokers first, and the power of silence.</p></div></div>
+      <div class="chapter"><span class="num">07</span><div><h3>Be Certain Or Lose</h3><p>Why money flows to certainty, and how to build it on purpose.</p></div></div>
+      <div class="chapter"><span class="num">08</span><div><h3>The Consistency Appreciated By The Future You</h3><p>Hamis's story — welding, poverty, and the 4am hour that changed everything.</p></div></div>
+    </div>
+
+    <div class="scorecard">
+      <div class="scorecard-head">
+        <h3>Sales Athlete Daily Scorecard</h3>
+        <span class="mono" style="font-size:11px;color:var(--slate);">bonus tracker, included in the book</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <tr><th>Category</th><th>What to do</th><th style="text-align:right;">Max points</th></tr>
+        <tr><td>A. Discipline Execution</td><td>Follow your daily routine strictly</td><td class="pts">20</td></tr>
+        <tr><td>B. Sales Activity</td><td>Talk to customers / leads</td><td class="pts">30</td></tr>
+        <tr><td>C. Closings</td><td>Actual sales made</td><td class="pts">20</td></tr>
+        <tr><td>D. Skill Improvement</td><td>Become better at selling</td><td class="pts">15</td></tr>
+        <tr><td>E. Evening Routine</td><td>Day ending well</td><td class="pts">15</td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="buy" class="buy-section">
+  <div class="wrap buy-grid">
+    <div>
+      <div class="eyebrow">Get your copy</div>
+      <h2 style="font-size:34px; margin-bottom:16px;">Read it tonight. Start applying it tomorrow at 4am.</h2>
+      <p style="color:var(--slate); max-width:44ch;">Pay with the mobile money wallet you already use. No card, no bank visit. Once the payment is confirmed on your phone, your download link unlocks immediately on this page.</p>
+    </div>
+    <div class="buy-card">
+      <div class="buy-card-head">
+        <div>
+          <span class="eyebrow" style="margin-bottom:0;">Own The Buyer — Full PDF</span>
+          <div class="price"><sup>UGX</sup>20,000</div>
+        </div>
+        <img class="buy-thumb" src="own-the-buyer-cover-thumb.jpg" alt="Own The Buyer book cover thumbnail">
+      </div>
+      <p style="color:var(--slate); font-size:13px;">One-time payment · instant download · yours to keep</p>
+      <ul>
+        <li>Full 8-chapter book, comic-illustrated chapter openers included</li>
+        <li>Sales Athlete Daily Scorecard tracker</li>
+        <li>Full glossary of sales terms</li>
+        <li>The exact cold-call &amp; closing scripts from the book</li>
+      </ul>
+      <div class="pay-methods">
+        <div class="pay-pill mtn">MTN Mobile Money</div>
+        <div class="pay-pill airtel">Airtel Money</div>
+      </div>
+      <button class="btn btn-primary full-btn" onclick="goToPesapal()">Pay UGX 20,000 &amp; Download</button>
+      <div class="note">You'll be taken to PesaPal's secure payment page to complete payment with MTN or Airtel. After paying, check the confirmation page (or your email) for your download link.</div>
+    </div>
+  </div>
+</section>
+
+<section id="jobs" class="jobs-section">
+  <div class="wrap">
+    <div class="jobs-card">
+      <div>
+        <div class="eyebrow teal">Beyond the book</div>
+        <h2>Need work while you build your sales skill?</h2>
+        <p>JobsLink Uganda lists real openings and gigs across the country — a practical next step while you put this book's system to work.</p>
+      </div>
+      <a class="btn btn-teal" href="https://jobslinkuganda.online" target="_blank" rel="noopener">Find Job or Workers</a>
+    </div>
+  </div>
+</section>
+
+<section id="authors">
+  <div class="wrap">
+    <div class="eyebrow"></div>
+    <h2 style="font-size:34px;">The authors</h2>
+    <div class="authors">
+      <div class="author-card">
+        <div class="avatar"><img src="IMG-20260706-WA0000.jpg" alt="Marvin Samuel Ssemanda"></div>
+        <h3>Marvin Samuel Ssemanda</h3>
+        <span class="author-role">Author</span>
+        <p>Writes on selling as a survival skill and a way out of poverty — drawing from real deals, real brokers, and real rejection, not theory.</p>
+        <div class="author-contact">0758 133 343</div>
+      </div>
+      <div class="author-card">
+        <div class="avatar"><img src="ronet.jpg" alt="Ronet Francis Nabunnya"></div>
+        <h3>Ronet Francis Nabunnya</h3>
+        <span class="author-role">Author</span>
+        <p>Dedicated this book to every dreamer who refuses to accept poverty as permanent — focused on turning ambition into a repeatable daily system.</p>
+        <div class="author-contact">0753 553 350</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="soon">
+  <div class="wrap">
+    <div class="eyebrow">What's next</div>
+    <h2 style="font-size:34px;">Coming soon</h2>
+    <div class="soon-grid">
+      <div class="soon-card">
+        <span class="soon-tag">Coming soon</span>
+        <div class="soon-cover">
+          <div class="soon-cover-fallback"><span>Own The<br>market<br>— cover soon —</span></div>
+          <img src="own the market.png" alt="Own The market cover" onerror="this.style.display='none'">
+        </div>
+        <h3>Own The Market</h3>
+        <p>A deeper playbook on negotiation, objection handling, and the psychology of the final yes.</p>
+      </div>
+      <div class="soon-card">
+        <span class="soon-tag">Coming soon</span>
+        <div class="soon-cover">
+          <div class="soon-cover-fallback"><span>Own The<br>Network<br>— cover soon —</span></div>
+          <img src="own the network.png" alt="Own The Network cover" onerror="this.style.display='none'">
+        </div>
+        <h3>Own The Network</h3>
+        <p>Turning brokers, referrals, and repeat buyers into a system that runs without you chasing.</p>
+      </div>
+      <div class="soon-card">
+        <span class="soon-tag">Coming soon</span>
+        <div class="soon-cover">
+          <div class="soon-cover-fallback"><span>Market<br>Discipline<br>— cover soon —</span></div>
+          <img src="Market Displine.png" alt="Market Discipline" onerror="this.style.display='none'">
+        </div>
+        <h3>Market Discipline</h3>
+        <p>Hamis's 4am discipline, expanded into a 90-day routine for sales athletes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div><b>Own The Buyer</b><br>Marvin Samuel Ssemanda &amp; Ronet Francis Nabunnya</div>
+    <div>For seminars or corrections on the book:<br>0758 133 343 · 0753 553 350</div>
+    <div>Payments powered by PesaPal · MTN &amp; Airtel Mobile Money</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   PASTE YOUR PESAPAL PAYMENT PAGE LINK HERE
+   Get it from: PesaPal Dashboard → Payments Page → Create Payment Page
+   Example: "https://pay.pesapal.com/yourbusiness/own-the-buyer"
+
+   IMPORTANT — READ THIS:
+   This button only OPENS the PesaPal page in a new tab. A plain
+   HTML/JS page like this one cannot itself confirm that a payment
+   succeeded (that requires a secret key and a server, which never
+   belong in code that runs in the buyer's browser). So the actual
+   "pay, then get the file" moment has to be handled on PesaPal's
+   side — either:
+     1) PesaPal's own "Payment Page / Store" product delivers the
+        file automatically (email or on-screen link) once payment
+        clears, or
+     2) You wire up a small backend that listens for PesaPal's IPN
+        (payment notification) and then emails/shows the download.
+   Right now, neither of those is connected — this file alone
+   cannot "check if someone paid." Set up option 1 (fastest) or 2
+   (more control) on the PesaPal side, then this button will hand
+   off correctly.
+   ============================================================ */
+const PESAPAL_PAYMENT_PAGE_URL = "https://store.pesapal.com/booksite";
+
+function goToPesapal(){
+  if(PESAPAL_PAYMENT_PAGE_URL.includes("PASTE_YOUR")){
+    alert("Add your PesaPal Payment Page link first — see the PESAPAL_PAYMENT_PAGE_URL line near the top of the <script> tag in index.html.");
+    return;
+  }
+  window.open(PESAPAL_PAYMENT_PAGE_URL, "_blank");
+}
+
+/* Mobile nav toggle */
+function toggleMobileNav(){
+  const panel = document.getElementById('mobilePanel');
+  const burger = document.getElementById('navBurger');
+  const isOpen = panel.classList.toggle('open');
+  burger.classList.toggle('open', isOpen);
+  burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+function closeMobileNav(){
+  document.getElementById('mobilePanel').classList.remove('open');
+  const burger = document.getElementById('navBurger');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}
+</script>
+
+</body>
+</html>
